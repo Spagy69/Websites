@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a2e;
+}
+
+.sun {
+    width: 150px;
+    height: 150px;
+    background-color: gold;
+    border-radius: 50%;
+    box-shadow: 0 0 100px gold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mercur {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: linear-gradient(-45deg, #a42, #000 60%);
+}
+
+.mercury-orbit {
+    width: 400px;
+    height: 400px;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: rotate linear 10s infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
