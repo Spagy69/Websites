@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generátor šachovnice</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generátor šachovnice</h1>
+        <form id="chessForm">
+            <label for="sizeInput">Zadejte velikost (2-16):</label>
+            <input type="number" id="sizeInput" min="2" max="16" required>
+            <button type="submit">Generovat</button>
+        </form>
+        <div id="chessboard"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
