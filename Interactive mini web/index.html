@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt Zidan - Elektromotorka</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;700&family=Roboto:wght@300;400;700&display=swap&subset=latin,latin-ext"
+        rel="stylesheet">
+    <!-- Externí CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigace -->
+    <header id="main-header">
+        <div class="container nav-container">
+            <div class="logo">
+                <h1>ZIDAN</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#uvod">Úvod</a></li>
+                    <li><a href="#o-projektu">O projektu</a></li>
+                    <li><a href="#specifikace">Specifikace</a></li>
+                    <li><a href="#galerie">Galerie</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle">Změnit motiv</button>
+        </div>
+    </header>
+
+    <!-- Sekce Úvod -->
+    <section id="uvod" class="hero">
+        <div class="container hero-content">
+            <h2>Elektrická revoluce ze školních dílen</h2>
+            <p>Studentský projekt VOŠ, SPŠ a SOŠ Varnsdorf</p>
+            <a href="#o-projektu" class="btn primary-btn">Více informací</a>
+        </div>
+    </section>
+
+    <!-- Sekce O Projektu -->
+    <section id="o-projektu" class="section">
+        <div class="container">
+            <h2 class="section-title">O Projektu Zidan</h2>
+            <div class="content-grid">
+                <div class="text-block">
+                    <p>V rámci soutěže „Dobrá škola - Moderní škola 4.0“, kterou každoročně pořádá Ústecký kraj,
+                        postavili žáci VOŠ, SPŠ a SOŠ Varnsdorf ve spolupráci se ZŠ náměstí E. Beneše elektromotorku
+                        Zidan. Cílem soutěže je propagace a popularizace odborného vzdělávání, které má úzkou vazbu na
+                        průmysl a technologie.</p>
+                    <p>Letošním oborem pro řešení byla elektrotechnika a kluci realizovali náročný projekt stavby
+                        funkční elektromotorky ve skutečné velikosti a pojmenovali ji ZIDAN. Je až neuvěřitelné, že si
+                        sami vyrobili kompletní rám, sestavili podvozek a navrhli a zrealizovali elektroinstalaci.</p>
+                    <p>Dále pak vytvořili přístrojovou desku s vlastním uživatelským prostředím a webové rozhraní, které
+                        lze instalovat v jakémkoli chytrém zařízení. Výsledkem obdivuhodné půlroční intenzivní práce je
+                        terénní motocykl se jmenovitým výkonem 3kW, kapacitou baterie 1.5kWh, nominálním napětím zdroje
+                        52V a dojezdem až 50km.</p>
+                    <p>Komunikační jednotka motocyklu umožňuje bezdrátové sledování polohy GPS a stavu vybraných
+                        SOŠ Varnsdorf a 2 žáci ze ZŠ Varnsdorf, náměstí E. Beneše.</p>
+                </div>
+                <div class="image-block">
+                    <!-- Místo pro obrázek -->
+                    <img src="img/zidan-team2.jpg" alt="Tým studentů kteří pracovali na motorce" class="img-responsive">
+                    <p class="caption">Tým studentů kteří pracovali na motorce</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce Specifikace (Tabulka) -->
+    <section id="specifikace" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Technické Parametry</h2>
+            <table class="specs-table">
+                <thead>
+                    <tr>
+                        <th>Parametr</th>
+                        <th>Hodnota</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jmenovitý výkon</td>
+                        <td>3 kW</td>
+                    </tr>
+                    <tr>
+                        <td>Kapacita baterie</td>
+                        <td>1.5 kWh</td>
+                    </tr>
+                    <tr>
+                        <td>Nominální napětí</td>
+                        <td>52 V</td>
+                    </tr>
+                    <tr>
+                        <td>Maximální dojezd</td>
+                        <td>až 50 km</td>
+                    </tr>
+                    <tr>
+                        <td>Chytré funkce</td>
+                        <td>GPS tracking, Webové rozhraní</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Sekce Galerie -->
+    <section id="galerie" class="section">
+        <div class="container">
+            <h2 class="section-title">Galerie</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="img/zidan-kostra.jpg" alt="Zidan ve výrobě">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/zidan-teren.jpg" alt="Jezdec na zidanovi">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/zidan-svareni.jpg" alt="Sváření zidana">
+                </div>
+                <div class="gallery-item">
+                    <img src="img/zidan-stress.jpg" alt="Stress test zidana">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekce Kontakt (Formulář) -->
+    <section id="kontakt" class="section bg-dark">
+        <div class="container">
+            <h2 class="section-title">Napište nám</h2>
+            <div class="contact-wrapper">
+                <form class="contact-form" action="#" method="post">
+                    <div class="form-group">
+                        <label for="name">Jméno:</label>
+                        <input type="text" id="name" name="name" placeholder="Vaše jméno" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" placeholder="vas@email.cz" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Zpráva:</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Vaše zpráva..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn submit-btn">Odeslat</button>
+                </form>
+
+                <div class="contact-info">
+                    <h3>Kde nás najdete</h3>
+                    <p>VOŠ, SPŠ a SOŠ Varnsdorf</p>
+                    <p>Mariánská 1100, 407 47 Varnsdorf</p>
+                    <a href="https://www.skolavdf.cz" target="_blank" class="external-link">Navštívit web školy
+                        &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Projekt Zidan. Vytvořeno studenty VOŠ, SPŠ a SOŠ Varnsdorf</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox (Modální okno pro obrázky) -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <!-- Skript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
