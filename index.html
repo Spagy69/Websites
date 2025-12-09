@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project Hub</title>
+    <link rel="stylesheet" href="hub_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>My Projects</h1>
+        <p class="subtitle">A collection of web experiments and applications</p>
+    </header>
+
+    <main>
+        <div id="project-container" class="project-grid">
+            <div class="loader">Loading projects...</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Generated automatically via GitHub API</p>
+    </footer>
+
+    <script>
+        const BLACKLIST = ['.git', '.github', 'assets', 'img', 'css', 'js', 'node_modules'];
+
+        async function fetchProjects() {
+            const container = document.getElementById('project-container');
+
+            try {
+                // Determine the repository from the URL
+                // Format: https://<username>.github.io/<repo-name>/
+                // API URL: https://api.github.com/repos/<username>/<repo-name>/contents/
+
+                const hostname = window.location.hostname;
+                const path = window.location.pathname.split('/').filter(p => p);
+
+                // Fallback for local testing (mock data or prompt)
+                if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                    // For local testing, we can't easily auto-discover without a backend.
+                    // We'll show a helpful message or try to guess.
+                    // IMPORTANT: This script is designed for GitHub Pages.
+                    console.warn("Running locally. GitHub API discovery relies on hostname parsing.");
+                    // Try to infer from common patterns or just fail gracefully.
+                }
+
+                let username, repo;
+
+                if (hostname.includes('github.io')) {
+                    username = hostname.split('.')[0];
+                    repo = path[0] || ''; // If repo is root, this might be empty, but usually it's /repo-name/
+                } else {
+                    // Start manually for testing/dev if needed, or error out
+                    // You can hardcode your repo here for local testing if you want
+                    // username = 'YOUR_USERNAME'; 
+                    // repo = 'YOUR_REPO';
+                }
+
+                if (!username) {
+                    // If we can't determine repo, maybe we are just viewing the file locally
+                    container.innerHTML = `
+                        <div class="project-card" style="grid-column: 1/-1; height: auto;">
+                            <div class="project-title">Local Mode Detected</div>
+                            <p class="project-desc">Auto-discovery works best when hosted on GitHub Pages.<br>
+                            If you are viewing this locally, please open the individual project folders manually.</p>
+                        </div>
+                     `;
+                    return;
+                }
+
+                const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/`;
+                const response = await fetch(apiUrl);
+
+                if (!response.ok) {
+                    if (response.status === 403) throw new Error("API Rate Limit Exceeded. Try again later.");
+                    if (response.status === 404) throw new Error("Repository not found.");
+                    throw new Error("Failed to fetch projects.");
+                }
+
+                const data = await response.json();
+
+                // Clear loader
+                container.innerHTML = '';
+
+                // Filter for directories
+                const projects = data.filter(item =>
+                    item.type === 'dir' &&
+                    !item.name.startsWith('.') &&
+                    !BLACKLIST.includes(item.name.toLowerCase())
+                );
+
+                if (projects.length === 0) {
+                    container.innerHTML = '<div class="error-message">No projects found in this repository.</div>';
+                    return;
+                }
+
+                projects.forEach(project => {
+                    const card = document.createElement('a');
+                    card.href = `./${project.name}/index.html`; // Construct link to project root (assuming index.html exists)
+                    // Alternatively just link to the folder: card.href = `./${project.name}/`; 
+                    // Browsers usually handle "folder/" by looking for index.html, but explicitness helps.
+                    // Actually, safer to just link to the folder so it doesn't break if index.html is missing.
+                    card.href = `./${project.name}/`;
+
+                    card.className = 'project-card';
+
+                    const namePretty = project.name.replace(/-/g, ' ').replace(/_/g, ' ');
+
+                    card.innerHTML = `
+                        <div class="project-icon">📂</div>
+                        <div class="project-title">${namePretty}</div>
+                        <div class="project-desc">Click to view project</div>
+                    `;
+
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                console.error(error);
+                container.innerHTML = `<div class="error-message">Error loading projects: ${error.message}</div>`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchProjects);
+    </script>
+</body>
+
+</html>

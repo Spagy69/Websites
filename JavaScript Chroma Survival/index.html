@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chroma Survival</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="game-container">
+        <!-- HUD Section: 3 Equal Parts -->
+        <header class="hud">
+            <!-- Part 1: HP -->
+            <div class="hud-item hp-section">
+                <span class="hud-label">HP</span>
+                <div class="hp-bar-bg">
+                    <div id="hp-bar-fill" class="hp-bar-fill"></div>
+                </div>
+            </div>
+
+            <!-- Part 2: Survival Timer -->
+            <div class="hud-item timer-section">
+                <span class="hud-label">SURVIVED</span>
+                <span id="survival-timer" class="value">00:00</span>
+            </div>
+
+            <!-- Part 3: Round Timer -->
+            <div class="hud-item round-section">
+                <span class="hud-label">SHIFT IN</span>
+                <span id="round-timer" class="value">15</span>
+            </div>
+        </header>
+
+        <!-- Main Game View -->
+        <main class="game-view" id="game-background">
+            <!-- Ring Selection (Target) -->
+            <div class="ring-container">
+                <div id="target-ring" class="target-ring"></div>
+            </div>
+
+            <!-- In-Game Status Message (Start / Game Over) -->
+            <div id="game-status" class="game-status">
+                <h2 id="status-title">CHROMA SURVIVAL</h2>
+                <p id="status-msg">PRESS PLAY TO START</p>
+            </div>
+        </main>
+
+        <!-- Controls Section: 4 Equal Parts -->
+        <!-- Controls Section: 4 Equal Parts -->
+        <footer class="controls">
+            <!-- Red -->
+            <div class="control-column red">
+                <button class="btn-step up" data-color="r" data-dir="1">▲</button>
+                <input type="text" inputmode="numeric" class="value-input" id="val-r" value="0">
+                <button class="btn-step down" data-color="r" data-dir="-1">▼</button>
+            </div>
+
+            <!-- Green -->
+            <div class="control-column green">
+                <button class="btn-step up" data-color="g" data-dir="1">▲</button>
+                <input type="text" inputmode="numeric" class="value-input" id="val-g" value="0">
+                <button class="btn-step down" data-color="g" data-dir="-1">▼</button>
+            </div>
+
+            <!-- Blue -->
+            <div class="control-column blue">
+                <button class="btn-step up" data-color="b" data-dir="1">▲</button>
+                <input type="text" inputmode="numeric" class="value-input" id="val-b" value="0">
+                <button class="btn-step down" data-color="b" data-dir="-1">▼</button>
+            </div>
+
+            <!-- Play / Confirm (Preview) -->
+            <div class="control-column play">
+                <button id="btn-play" class="btn-play">
+                    <!-- Play Icon -->
+                    <svg viewBox="0 0 24 24" width="64" height="64">
+                        <path d="M8 5v14l11-7z" fill="currentColor" />
+                    </svg>
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
