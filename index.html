@@ -117,7 +117,7 @@
                 container.innerHTML = '';
 
                 // Filter for directories
-                const projects = data.filter(item =>
+                let projects = data.filter(item =>
                     item.type === 'dir' &&
                     !item.name.startsWith('.') &&
                     !BLACKLIST.includes(item.name.toLowerCase())
@@ -128,16 +128,74 @@
                     return;
                 }
 
-                projects.forEach(project => {
+                // Helper to get last commit date
+                async function getLastCommitDate(projectName) {
+                    const cacheKey = `last_commit_${username}_${repo}_${projectName}`;
+                    const cached = localStorage.getItem(cacheKey);
+
+                    if (cached) {
+                        const { date, timestamp } = JSON.parse(cached);
+                        // Cache for 15 minutes
+                        if (Date.now() - timestamp < 15 * 60 * 1000) {
+                            return new Date(date);
+                        }
+                    }
+
+                    try {
+                        // Fetch the last commit for this path
+                        const commitsUrl = `https://api.github.com/repos/${username}/${repo}/commits?path=${projectName}&per_page=1`;
+                        const res = await fetch(commitsUrl);
+                        if (!res.ok) return new Date(0); // If failed, treat as very old
+                        const commits = await res.json();
+                        if (commits.length > 0) {
+                            const dateStr = commits[0].commit.committer.date;
+                            localStorage.setItem(cacheKey, JSON.stringify({
+                                date: dateStr,
+                                timestamp: Date.now()
+                            }));
+                            return new Date(dateStr);
+                        }
+                    } catch (e) {
+                        console.error(`Failed to fetch date for ${projectName}`, e);
+                    }
+                    return new Date(0);
+                }
+
+                // Fetch dates in parallel
+                // We leave the loader removed (or could have kept it until now, but incremental might be better? 
+                // Actually with async sorting, better to wait so the list doesn't jump).
+                // Let's put a spinner back if it takes too long, or just wait.
+                container.innerHTML = '<div class="loader">Sorting projects by recent updates...</div>';
+
+                const projectsWithDates = await Promise.all(projects.map(async (p) => {
+                    const date = await getLastCommitDate(p.name);
+                    return { ...p, lastUpdated: date };
+                }));
+
+                // Sort descending
+                projectsWithDates.sort((a, b) => b.lastUpdated - a.lastUpdated);
+
+                // Clear loader again
+                container.innerHTML = '';
+
+                projectsWithDates.forEach(project => {
                     const card = document.createElement('a');
                     card.href = `./${project.name}/`;
                     card.className = 'project-card';
                     const namePretty = project.name.replace(/-/g, ' ').replace(/_/g, ' ');
 
+                    // Format date
+                    const dateStr = project.lastUpdated.getTime() > 0
+                        ? project.lastUpdated.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+                        : '';
+
                     card.innerHTML = `
                         <div class="project-icon">📂</div>
                         <div class="project-title">${namePretty}</div>
-                        <div class="project-desc">Click to view project</div>
+                        <div class="project-desc">
+                             ${dateStr ? `<span style="font-size: 0.8em; opacity: 0.8; display:block; margin-bottom:4px;">Updated: ${dateStr}</span>` : ''}
+                             Click to view project
+                        </div>
                     `;
 
                     container.appendChild(card);
