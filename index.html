@@ -11,6 +11,9 @@
 
 <body>
     <header>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+            <span class="icon">☀</span> <span class="text">Light Mode</span>
+        </button>
         <h1>My Projects</h1>
         <p class="subtitle">A collection of web experiments and applications</p>
     </header>
@@ -28,6 +31,39 @@
     <script>
         const BLACKLIST = ['.git', '.github', 'assets', 'img', 'css', 'js', 'node_modules'];
 
+        // Theme Handling
+        const toggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+        const iconSpan = toggleButton.querySelector('.icon');
+        const textSpan = toggleButton.querySelector('.text');
+
+        function updateButton(isLight) {
+            if (isLight) {
+                iconSpan.textContent = '☾';
+                textSpan.textContent = 'Dark Mode';
+            } else {
+                iconSpan.textContent = '☀';
+                textSpan.textContent = 'Light Mode';
+            }
+        }
+
+        // Check Local Storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+            updateButton(true);
+        } else {
+            // Default is dark
+            updateButton(false);
+        }
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            updateButton(isLight);
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
         async function fetchProjects() {
             const container = document.getElementById('project-container');
 
@@ -42,26 +78,20 @@
                 // Fallback for local testing (mock data or prompt)
                 if (hostname === 'localhost' || hostname === '127.0.0.1') {
                     // For local testing, we can't easily auto-discover without a backend.
-                    // We'll show a helpful message or try to guess.
-                    // IMPORTANT: This script is designed for GitHub Pages.
+                    // We'll show a helpful message or try to infer.
                     console.warn("Running locally. GitHub API discovery relies on hostname parsing.");
-                    // Try to infer from common patterns or just fail gracefully.
                 }
 
                 let username, repo;
 
                 if (hostname.includes('github.io')) {
                     username = hostname.split('.')[0];
-                    repo = path[0] || ''; // If repo is root, this might be empty, but usually it's /repo-name/
+                    repo = path[0] || '';
                 } else {
-                    // Start manually for testing/dev if needed, or error out
-                    // You can hardcode your repo here for local testing if you want
-                    // username = 'YOUR_USERNAME'; 
-                    // repo = 'YOUR_REPO';
+                    // Start manually for testing/dev if needed
                 }
 
                 if (!username) {
-                    // If we can't determine repo, maybe we are just viewing the file locally
                     container.innerHTML = `
                         <div class="project-card" style="grid-column: 1/-1; height: auto;">
                             <div class="project-title">Local Mode Detected</div>
@@ -100,14 +130,8 @@
 
                 projects.forEach(project => {
                     const card = document.createElement('a');
-                    card.href = `./${project.name}/index.html`; // Construct link to project root (assuming index.html exists)
-                    // Alternatively just link to the folder: card.href = `./${project.name}/`; 
-                    // Browsers usually handle "folder/" by looking for index.html, but explicitness helps.
-                    // Actually, safer to just link to the folder so it doesn't break if index.html is missing.
                     card.href = `./${project.name}/`;
-
                     card.className = 'project-card';
-
                     const namePretty = project.name.replace(/-/g, ' ').replace(/_/g, ' ');
 
                     card.innerHTML = `
@@ -125,7 +149,12 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', fetchProjects);
+        // Wait to fetch projects
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fetchProjects);
+        } else {
+            fetchProjects();
+        }
     </script>
 </body>
 
