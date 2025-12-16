@@ -11,6 +11,9 @@
 
 <body>
     <header>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+            <span class="icon">☀</span> <span class="text">Light Mode</span>
+        </button>
         <h1>My Projects</h1>
         <p class="subtitle">A collection of web experiments and applications</p>
     </header>
@@ -28,6 +31,39 @@
     <script>
         const BLACKLIST = ['.git', '.github', 'assets', 'img', 'css', 'js', 'node_modules'];
 
+        // Theme Handling
+        const toggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+        const iconSpan = toggleButton.querySelector('.icon');
+        const textSpan = toggleButton.querySelector('.text');
+
+        function updateButton(isLight) {
+            if (isLight) {
+                iconSpan.textContent = '☾';
+                textSpan.textContent = 'Dark Mode';
+            } else {
+                iconSpan.textContent = '☀';
+                textSpan.textContent = 'Light Mode';
+            }
+        }
+
+        // Check Local Storage
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light') {
+            body.classList.add('light-mode');
+            updateButton(true);
+        } else {
+            // Default is dark
+            updateButton(false);
+        }
+
+        toggleButton.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            updateButton(isLight);
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
         async function fetchProjects() {
             const container = document.getElementById('project-container');
 
@@ -42,26 +78,20 @@
                 // Fallback for local testing (mock data or prompt)
                 if (hostname === 'localhost' || hostname === '127.0.0.1') {
                     // For local testing, we can't easily auto-discover without a backend.
-                    // We'll show a helpful message or try to guess.
-                    // IMPORTANT: This script is designed for GitHub Pages.
+                    // We'll show a helpful message or try to infer.
                     console.warn("Running locally. GitHub API discovery relies on hostname parsing.");
-                    // Try to infer from common patterns or just fail gracefully.
                 }
 
                 let username, repo;
 
                 if (hostname.includes('github.io')) {
                     username = hostname.split('.')[0];
-                    repo = path[0] || ''; // If repo is root, this might be empty, but usually it's /repo-name/
+                    repo = path[0] || '';
                 } else {
-                    // Start manually for testing/dev if needed, or error out
-                    // You can hardcode your repo here for local testing if you want
-                    // username = 'YOUR_USERNAME'; 
-                    // repo = 'YOUR_REPO';
+                    // Start manually for testing/dev if needed
                 }
 
                 if (!username) {
-                    // If we can't determine repo, maybe we are just viewing the file locally
                     container.innerHTML = `
                         <div class="project-card" style="grid-column: 1/-1; height: auto;">
                             <div class="project-title">Local Mode Detected</div>
@@ -87,7 +117,7 @@
                 container.innerHTML = '';
 
                 // Filter for directories
-                const projects = data.filter(item =>
+                let projects = data.filter(item =>
                     item.type === 'dir' &&
                     !item.name.startsWith('.') &&
                     !BLACKLIST.includes(item.name.toLowerCase())
@@ -98,22 +128,74 @@
                     return;
                 }
 
-                projects.forEach(project => {
+                // Helper to get last commit date
+                async function getLastCommitDate(projectName) {
+                    const cacheKey = `last_commit_${username}_${repo}_${projectName}`;
+                    const cached = localStorage.getItem(cacheKey);
+
+                    if (cached) {
+                        const { date, timestamp } = JSON.parse(cached);
+                        // Cache for 15 minutes
+                        if (Date.now() - timestamp < 15 * 60 * 1000) {
+                            return new Date(date);
+                        }
+                    }
+
+                    try {
+                        // Fetch the last commit for this path
+                        const commitsUrl = `https://api.github.com/repos/${username}/${repo}/commits?path=${projectName}&per_page=1`;
+                        const res = await fetch(commitsUrl);
+                        if (!res.ok) return new Date(0); // If failed, treat as very old
+                        const commits = await res.json();
+                        if (commits.length > 0) {
+                            const dateStr = commits[0].commit.committer.date;
+                            localStorage.setItem(cacheKey, JSON.stringify({
+                                date: dateStr,
+                                timestamp: Date.now()
+                            }));
+                            return new Date(dateStr);
+                        }
+                    } catch (e) {
+                        console.error(`Failed to fetch date for ${projectName}`, e);
+                    }
+                    return new Date(0);
+                }
+
+                // Fetch dates in parallel
+                // We leave the loader removed (or could have kept it until now, but incremental might be better? 
+                // Actually with async sorting, better to wait so the list doesn't jump).
+                // Let's put a spinner back if it takes too long, or just wait.
+                container.innerHTML = '<div class="loader">Sorting projects by recent updates...</div>';
+
+                const projectsWithDates = await Promise.all(projects.map(async (p) => {
+                    const date = await getLastCommitDate(p.name);
+                    return { ...p, lastUpdated: date };
+                }));
+
+                // Sort descending
+                projectsWithDates.sort((a, b) => b.lastUpdated - a.lastUpdated);
+
+                // Clear loader again
+                container.innerHTML = '';
+
+                projectsWithDates.forEach(project => {
                     const card = document.createElement('a');
-                    card.href = `./${project.name}/index.html`; // Construct link to project root (assuming index.html exists)
-                    // Alternatively just link to the folder: card.href = `./${project.name}/`; 
-                    // Browsers usually handle "folder/" by looking for index.html, but explicitness helps.
-                    // Actually, safer to just link to the folder so it doesn't break if index.html is missing.
                     card.href = `./${project.name}/`;
-
                     card.className = 'project-card';
-
                     const namePretty = project.name.replace(/-/g, ' ').replace(/_/g, ' ');
+
+                    // Format date
+                    const dateStr = project.lastUpdated.getTime() > 0
+                        ? project.lastUpdated.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+                        : '';
 
                     card.innerHTML = `
                         <div class="project-icon">📂</div>
                         <div class="project-title">${namePretty}</div>
-                        <div class="project-desc">Click to view project</div>
+                        <div class="project-desc">
+                             ${dateStr ? `<span style="font-size: 0.8em; opacity: 0.8; display:block; margin-bottom:4px;">Updated: ${dateStr}</span>` : ''}
+                             Click to view project
+                        </div>
                     `;
 
                     container.appendChild(card);
@@ -125,7 +207,12 @@
             }
         }
 
-        document.addEventListener('DOMContentLoaded', fetchProjects);
+        // Wait to fetch projects
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fetchProjects);
+        } else {
+            fetchProjects();
+        }
     </script>
 </body>
 
