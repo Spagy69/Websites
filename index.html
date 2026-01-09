@@ -30,6 +30,13 @@
 
     <script>
         const BLACKLIST = ['.git', '.github', 'assets', 'img', 'css', 'js', 'node_modules'];
+        const EXTERNAL_PROJECTS = [
+            {
+                name: '2ite-web-machac-vit',
+                url: 'https://spagy69.github.io/2ite-web-machac-vit/',
+                repo: 'Spagy69/2ite-web-machac-vit'
+            }
+        ];
 
         // Theme Handling
         const toggleButton = document.getElementById('theme-toggle');
@@ -69,83 +76,79 @@
 
             try {
                 // Determine the repository from the URL
-                // Format: https://<username>.github.io/<repo-name>/
-                // API URL: https://api.github.com/repos/<username>/<repo-name>/contents/
-
                 const hostname = window.location.hostname;
                 const path = window.location.pathname.split('/').filter(p => p);
-
-                // Fallback for local testing (mock data or prompt)
-                if (hostname === 'localhost' || hostname === '127.0.0.1') {
-                    // For local testing, we can't easily auto-discover without a backend.
-                    // We'll show a helpful message or try to infer.
-                    console.warn("Running locally. GitHub API discovery relies on hostname parsing.");
-                }
 
                 let username, repo;
 
                 if (hostname.includes('github.io')) {
                     username = hostname.split('.')[0];
                     repo = path[0] || '';
-                } else {
-                    // Start manually for testing/dev if needed
                 }
 
-                if (!username) {
+                // Initialize with external projects
+                let allProjects = EXTERNAL_PROJECTS.map(p => ({
+                    ...p,
+                    isExternal: true
+                }));
+
+                // If hosted on GitHub, try to fetch siblings
+                if (username) {
+                    const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/`;
+                    try {
+                        const response = await fetch(apiUrl);
+                        if (response.ok) {
+                            const data = await response.json();
+                            const subdirs = data.filter(item =>
+                                item.type === 'dir' &&
+                                !item.name.startsWith('.') &&
+                                !BLACKLIST.includes(item.name.toLowerCase())
+                            ).map(p => ({
+                                name: p.name,
+                                url: `./${p.name}/`,
+                                repo: `${username}/${repo}`,
+                                isExternal: false
+                            }));
+                            allProjects = [...allProjects, ...subdirs];
+                        }
+                    } catch (e) {
+                        console.warn('Could not fetch repo contents', e);
+                    }
+                }
+
+                if (allProjects.length === 0) {
                     container.innerHTML = `
                         <div class="project-card" style="grid-column: 1/-1; height: auto;">
                             <div class="project-title">Local Mode Detected</div>
                             <p class="project-desc">Auto-discovery works best when hosted on GitHub Pages.<br>
-                            If you are viewing this locally, please open the individual project folders manually.</p>
+                            If you are viewing this locally, only hardcoded projects are visible.</p>
                         </div>
                      `;
                     return;
                 }
 
-                const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/`;
-                const response = await fetch(apiUrl);
-
-                if (!response.ok) {
-                    if (response.status === 403) throw new Error("API Rate Limit Exceeded. Try again later.");
-                    if (response.status === 404) throw new Error("Repository not found.");
-                    throw new Error("Failed to fetch projects.");
-                }
-
-                const data = await response.json();
-
-                // Clear loader
-                container.innerHTML = '';
-
-                // Filter for directories
-                let projects = data.filter(item =>
-                    item.type === 'dir' &&
-                    !item.name.startsWith('.') &&
-                    !BLACKLIST.includes(item.name.toLowerCase())
-                );
-
-                if (projects.length === 0) {
-                    container.innerHTML = '<div class="error-message">No projects found in this repository.</div>';
-                    return;
-                }
-
                 // Helper to get last commit date
-                async function getLastCommitDate(projectName) {
-                    const cacheKey = `last_commit_${username}_${repo}_${projectName}`;
-                    const cached = localStorage.getItem(cacheKey);
+                async function getLastCommitDate(project) {
+                    const targetRepo = project.repo || `${username}/${repo}`;
+                    const cacheKey = `last_commit_${targetRepo}_${project.isExternal ? 'root' : project.name}`;
 
+                    const cached = localStorage.getItem(cacheKey);
                     if (cached) {
                         const { date, timestamp } = JSON.parse(cached);
-                        // Cache for 15 minutes
                         if (Date.now() - timestamp < 15 * 60 * 1000) {
                             return new Date(date);
                         }
                     }
 
                     try {
-                        // Fetch the last commit for this path
-                        const commitsUrl = `https://api.github.com/repos/${username}/${repo}/commits?path=${projectName}&per_page=1`;
+                        let commitsUrl = `https://api.github.com/repos/${targetRepo}/commits?per_page=1`;
+                        // Only add path filter for internal sub-projects
+                        if (!project.isExternal) {
+                            commitsUrl += `&path=${project.name}`;
+                        }
+
                         const res = await fetch(commitsUrl);
-                        if (!res.ok) return new Date(0); // If failed, treat as very old
+                        if (!res.ok) return new Date(0);
                         const commits = await res.json();
                         if (commits.length > 0) {
                             const dateStr = commits[0].commit.committer.date;
@@ -156,35 +159,30 @@
                             return new Date(dateStr);
                         }
                     } catch (e) {
-                        console.error(`Failed to fetch date for ${projectName}`, e);
+                        console.error(`Failed to fetch date for ${project.name}`, e);
                     }
                     return new Date(0);
                 }
 
-                // Fetch dates in parallel
-                // We leave the loader removed (or could have kept it until now, but incremental might be better? 
-                // Actually with async sorting, better to wait so the list doesn't jump).
-                // Let's put a spinner back if it takes too long, or just wait.
                 container.innerHTML = '<div class="loader">Sorting projects by recent updates...</div>';
 
-                const projectsWithDates = await Promise.all(projects.map(async (p) => {
-                    const date = await getLastCommitDate(p.name);
+                const projectsWithDates = await Promise.all(allProjects.map(async (p) => {
+                    const date = await getLastCommitDate(p);
                     return { ...p, lastUpdated: date };
                 }));
 
-                // Sort descending
                 projectsWithDates.sort((a, b) => b.lastUpdated - a.lastUpdated);
 
-                // Clear loader again
                 container.innerHTML = '';
 
                 projectsWithDates.forEach(project => {
                     const card = document.createElement('a');
-                    card.href = `./${project.name}/`;
+                    card.href = project.url;
                     card.className = 'project-card';
+                    if (project.isExternal) card.target = "_blank";
+
                     const namePretty = project.name.replace(/-/g, ' ').replace(/_/g, ' ');
 
-                    // Format date
                     const dateStr = project.lastUpdated.getTime() > 0
                         ? project.lastUpdated.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
                         : '';
