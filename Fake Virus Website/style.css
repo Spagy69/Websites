@@ -1,0 +1,76 @@
+#downloadbtn {
+    background-color: #00ff51;
+    color: black;
+    border: none;
+    padding: 100px 200px;
+    white-space: nowrap;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 50px;
+    margin: auto;
+    cursor: pointer;
+    border-radius: 10px;
+    border-color: black;
+    border-width: 5px;
+    border-style: solid;
+    font-family: 'Ubuntu';
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#downloadbtn:hover {
+    background-color: #00d945;
+}
+
+#downloadbtn:active {
+    background-color: #ff0000;
+}
+
+.header {
+    font-size: 50px;
+    text-align: center;
+    margin: auto;
+    color: black;
+    text-decoration: underline;
+    font-family: 'Ubuntu';
+}
+
+#downloadingbar {
+    background-color: #03be00;
+    width: 0%;
+    height: 100%;
+}
+
+#downloadingbar_background {
+    background-color: #e7e7e7;
+    width: 80%;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    border: 2px solid black;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.spam-img {
+    position: fixed;
+    z-index: 9999;
+    cursor: pointer;
+    max-width: 250px;
+    max-height: 250px;
+    user-select: none;
+}
