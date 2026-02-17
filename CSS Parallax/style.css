@@ -1,0 +1,46 @@
+.parallax {
+    background-image: url("src/esp32intro2.jpg");
+
+    min-height: 800px;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 250px;
+    text-shadow: 20px 20px 20px #000000;
+    color: #00abef;
+    text-align: center;
+}
+
+.parallax2 {
+    background-image: url("src/raspberry.jpg");
+
+    min-height: 800px;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 250px;
+    text-shadow: 20px 20px 20px #000000;
+    color: #00abef;
+    text-align: center;
+}
+
+
+.content {
+    background-color: #2a2a2a;
+    color: #ededed;
+    padding: 50px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
