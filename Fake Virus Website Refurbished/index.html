@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="cz">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stáhnout Ram 2026 - 100% OVERENO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- ===== HLAVNÍ OBSAH (front page) ===== -->
+    <div id="main-content">
+        <marquee class="scam-marquee" scrollamount="15">
+            ⚠️ POZOR!!! STÁHNĚTE SI RAM ZDARMA ⚠️ AKCE PLATÍ DO VYPRODÁNÍ ZÁSOB ⚠️ VÁŠ POČÍTAČ JE POMALÝ? ⚠️ ZRYCHLETE HO HNED TEĎ!!! ⚠️ 100% BEZ VIRŮ ⚠️
+        </marquee>
+
+        <header id="main-header">
+            <div class="header-box">
+                <p class="header">💾 Zadarmo RAM 2026!!! 💾</p>
+                <p class="sub-header">⭐ Nejrychlejší DDR5 ke stažení na celém internetu! ⭐<br>100% BEZPEČNÉ &nbsp;✅&nbsp; OVĚŘENO &nbsp;✅&nbsp; ZDARMA</p>
+            </div>
+        </header>
+
+        <div class="scam-layout">
+            <!-- Levý panel -->
+            <div class="side-panel left-panel">
+                <div class="windows-popup">
+                    <div class="win-titlebar">
+                        <img src="https://win98icons.alexmeub.com/icons/png/security_padlock-1.png" width="14" height="14" alt="">
+                        <span>Bezpečnostní upozornění</span>
+                        <button class="win-close" onclick="buttonScarySound()">✕</button>
+                    </div>
+                    <div class="win-body">
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                            <span style="font-size:40px;">⚠️</span>
+                            <div>
+                                <b>Váš systém je ohrožen!</b><br>
+                                Detekován nedostatek RAM!
+                            </div>
+                        </div>
+                        <p style="margin:0 0 10px 0;">Váš počítač běží pomaleji než obvykle. Stáhněte RAM ZDARMA pro okamžité zrychlení!</p>
+                        <div style="text-align:center;">
+                            <button class="win-btn" onclick="buttonScarySound()">Stáhnout nyní</button>
+                            <button class="win-btn" onclick="buttonScarySound()">Zavřít</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="windows-popup blink-soft" style="margin-top:15px;">
+                    <div class="win-titlebar win-yellow">
+                        <span>🎁 Gratulujeme!</span>
+                        <button class="win-close" onclick="buttonScarySound()">✕</button>
+                    </div>
+                    <div class="win-body">
+                        <p style="color:red;font-weight:bold;font-size:18px;margin:0 0 5px;">Jste náš 1 000 000. návštěvník!</p>
+                        <p style="margin:0 0 10px 0;">Klikněte pro získání <b>iPhone 16 Pro Max</b> ZDARMA!</p>
+                        <div style="text-align:center;">
+                            <button class="win-btn-green" onclick="buttonScarySound()">PŘEVZÍT VÝHRU 🎁</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trust-badge">
+                    <div>🔒 SSL Secured</div>
+                    <div>✅ Virus Free</div>
+                    <div>⭐⭐⭐⭐⭐</div>
+                    <div style="font-size:11px;">Ověřeno antivirem AVG, Norton, Kaspersky</div>
+                </div>
+            </div>
+
+            <!-- Střed -->
+            <div class="center-panel">
+                <button id="downloadbtn" onclick="buttonScarySound(); downloadRam()">
+                    ⬇ STÁHNOUT FREE RAM ⬇
+                </button>
+                <p class="small-text">* Stahováním souhlasíte s odevzdáním vaší duše a všech dat na disku C:\</p>
+
+                <div class="fake-scan" id="fakeScan">
+                    <div class="scan-header">🖥 Systémová analýza</div>
+                    <div class="scan-row"><span>RAM stav:</span> <span class="scan-bad">KRITICKÝ ❌</span></div>
+                    <div class="scan-row"><span>Volná paměť:</span> <span class="scan-bad">32 MB / 16 GB ❌</span></div>
+                    <div class="scan-row"><span>CPU výkon:</span> <span class="scan-warn">SNÍŽENÝ ⚠️</span></div>
+                    <div class="scan-row"><span>Doporučení:</span> <span class="scan-good">Stáhnout RAM ✅</span></div>
+                </div>
+
+                <div class="testimonials">
+                    <div class="testimonial">
+                        <img src="pictures/mario.png" width="40" height="40" style="border-radius:50%;float:left;margin-right:10px;" alt="user">
+                        <b>Mario K.</b> ⭐⭐⭐⭐⭐<br>
+                        "Stáhl jsem 32 GB RAM a můj komp teď běží jako raketa! Díky!"
+                    </div>
+                    <div class="testimonial" style="margin-top:10px;">
+                        <b>Franta U.</b> ⭐⭐⭐⭐⭐<br>
+                        "Nevěřil jsem, ale funguje! Mám teď 256 GB RAM za 0 Kč!"
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pravý panel -->
+            <div class="side-panel right-panel">
+                <div class="windows-popup">
+                    <div class="win-titlebar win-red">
+                        <span>⛔ Systémová chyba</span>
+                        <button class="win-close" onclick="buttonScarySound()">✕</button>
+                    </div>
+                    <div class="win-body">
+                        <p><b>Kritická chyba paměti</b></p>
+                        <p style="font-family:monospace;font-size:11px;background:#fff;border:1px solid #ccc;padding:5px;">
+                            ERROR: 0x0000000A<br>
+                            IRQL_NOT_LESS_OR_EQUAL<br>
+                            RAM: 32MB (nedostatek)
+                        </p>
+                        <div style="text-align:center;">
+                            <button class="win-btn-red" onclick="buttonScarySound()">Opravit ZDARMA</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="windows-popup" style="margin-top:15px;">
+                    <div class="win-titlebar">
+                        <span>📦 Produkt dne</span>
+                        <button class="win-close" onclick="buttonScarySound()">✕</button>
+                    </div>
+                    <div class="win-body">
+                        <p style="font-size:22px;font-weight:bold;color:red;margin:0;">128 GB DDR5 RAM</p>
+                        <p style="margin:5px 0;"><s style="color:#999;">5 999 Kč</s> → <b style="color:green;font-size:20px;">ZDARMA</b></p>
+                        <p style="color:red;font-weight:bold;">⏳ Zbývají jen 3 licence!</p>
+                        <p style="font-size:11px;color:#666;">Akce platí jen dnes do půlnoci!</p>
+                    </div>
+                </div>
+
+                <div class="counter-box">
+                    <div>👥 Právě stahuje: <b id="liveCounter">4 821</b> lidí</div>
+                </div>
+            </div>
+        </div>
+
+        <marquee class="scam-marquee bottom" scrollamount="20" direction="right">
+            🚀 STAHUJTE HNED! 🚀 VIRUS FREE 🚀 AKCE POUZE DNES 🚀 VAŠE DATA JSOU V BEZPEČÍ 🚀 PŘIDEJTE SE K 4 MILIONŮM SPOKOJENÝCH UŽIVATELŮ 🚀
+        </marquee>
+    </div>
+
+    <!-- ===== HACK FÁZE ===== -->
+    <div id="hack-overlay" style="display:none;">
+        <!-- Pozadí -->
+        <div id="hack-bg"></div>
+
+        <!-- Fake virus scan okno -->
+        <div class="hack-window" id="hackScanWindow">
+            <div class="hack-titlebar">
+                <img src="https://win98icons.alexmeub.com/icons/png/shield-4.png" width="14" height="14" alt="" onerror="this.style.display='none'">
+                <span>🛡 RAM Installer Pro 2026 – Instalace</span>
+                <button class="hack-close-btn">✕</button>
+            </div>
+            <div class="hack-window-body">
+                <div class="hack-icon-row">
+                    <span id="hackIcon">⏳</span>
+                    <div>
+                        <div id="hackTitle" style="font-size:18px;font-weight:bold;">Probíhá instalace RAM...</div>
+                        <div id="hackSubtitle" style="font-size:13px;color:#555;margin-top:4px;">Připravuji instalační balíček</div>
+                    </div>
+                </div>
+                <div class="hack-progress-outer">
+                    <div class="hack-progress-inner" id="hackProgressBar"></div>
+                </div>
+                <div id="hackPercent" style="font-size:13px;color:#333;margin:5px 0 10px;">0%</div>
+                <div class="hack-log-box" id="hackLog"></div>
+                <div style="margin-top:15px;text-align:right;">
+                    <button class="win-btn" id="hackCancelBtn" onclick="buttonScarySound()">Zrušit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ransomware popup (skrytý, zobrazí se po instalaci) -->
+        <div class="ransom-popup" id="ransomPopup" style="display:none;">
+            <div class="ransom-header">
+                ☠ VAŠE SOUBORY BYLY ZAŠIFROVÁNY ☠
+            </div>
+            <div class="ransom-body">
+                <p>Všechny vaše soubory na disku <b>C:\</b> byly zašifrovány pomocí <b>AES-256</b>.</p>
+                <p>Pro dešifrování odešlete <b style="font-size:26px;color:#ff4444;">0.05 BTC</b> (≈ 3 500 Kč) na adresu:</p>
+                <div class="bitcoin-address">1A1zP1eP5QGefi2DMPTfTL5SLmv7Divf8N</div>
+                <div class="countdown-row">
+                    Máte: <span id="countdownTimer" style="color:red;font-size:28px;font-weight:bold;">23:59:59</span> do smazání klíče
+                </div>
+                <p style="font-size:13px;color:#aaa;">Po zaplacení do 24h obdržíte dešifrovací klíč na email který jsme ukradli.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- BSOD -->
+    <div class="bsod" id="bsod">
+        <h1>A problem has been detected</h1>
+        <p>A problem has been detected and windows has been shut down to prevent damage to your computer.</p>
+        <br>
+        <p>MEMORY_MANAGEMENT_VIOLATION</p>
+        <br>
+        <p>If this is the first time you've seen this error screen,<br>
+            restart your computer. If this screen appears again, follow<br>
+            these steps:</p>
+        <br>
+        <p>Check to make sure any new hardware or software is properly installed.<br>
+            If this is a new installation, ask your hardware or software manufacturer<br>
+            for any windows updates you might need.</p>
+        <br>
+        <p>Technical information:</p>
+        <br>
+        <p>*** STOP: 0x0000001A (0x0000000000041284, 0xFFFFF70001080000, 0x0000000000003002, 0x0000000000000000)</p>
+        <br><br>
+        <p>Beginning dump of physical memory</p>
+        <p id="bsodDump"></p>
+        <p>Physical memory dump complete.</p>
+        <p>Contact your system administrator or technical support group for further assistance.</p>
+    </div>
+
+    <audio id="scarySound">
+        <source src="sfx/dragon-studio-creepy-ghosts-moan-sfx-482866.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="glitchSound">
+        <source src="sfx/freesound_community-spookynoise1-72736.mp3" type="audio/ogg">
+    </audio>
+    <audio id="xpError">
+        <source src="sfx/xp-error.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,535 @@
+/* ===========================
+   GLOBAL
+   =========================== */
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #000080;
+    background-image:
+        linear-gradient(rgba(0, 0, 255, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 255, 0.15) 1px, transparent 1px);
+    background-size: 20px 20px;
+    color: #ffffff;
+    font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+}
+
+/* ===========================
+   MARQUEE
+   =========================== */
+.scam-marquee {
+    background-color: #ff0000;
+    color: #ffff00;
+    font-size: 26px;
+    font-weight: bold;
+    padding: 8px 0;
+    border-top: 4px solid yellow;
+    border-bottom: 4px solid yellow;
+    text-transform: uppercase;
+    font-family: 'Impact', sans-serif;
+}
+
+.scam-marquee.bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+/* ===========================
+   HEADER BOX
+   =========================== */
+.header-box {
+    background-color: #ffff00;
+    border: 5px dashed #ff0000;
+    margin: 15px auto 10px;
+    width: 82%;
+    padding: 14px 20px;
+    box-shadow: 8px 8px 0px #000;
+    text-align: center;
+}
+
+.header {
+    font-size: 58px;
+    margin: 0;
+    color: #ff0000;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: 'Impact', sans-serif;
+    text-shadow: 3px 3px 0px #000;
+    text-decoration: underline;
+}
+
+.sub-header {
+    color: #000;
+    font-size: 20px;
+    margin-top: 8px;
+    font-weight: bold;
+    font-family: 'Comic Sans MS', 'Comic Neue', sans-serif;
+    line-height: 1.5;
+}
+
+/* ===========================
+   LAYOUT
+   =========================== */
+.scam-layout {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    margin-top: 10px;
+    gap: 15px;
+}
+
+.side-panel {
+    width: 27%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.center-panel {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ===========================
+   WINDOWS XP POPUP STYLE
+   =========================== */
+.windows-popup {
+    background-color: #ECE9D8;
+    color: #000;
+    border: 2px solid #0055EA;
+    border-radius: 6px 6px 0 0;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.6);
+    font-family: 'Tahoma', sans-serif;
+    font-size: 13px;
+}
+
+.win-titlebar {
+    background: linear-gradient(to right, #0D3B8E, #3a93ff, #0D3B8E);
+    color: white;
+    padding: 3px 5px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 4px 4px 0 0;
+}
+
+.win-titlebar span {
+    flex: 1;
+    font-size: 13px;
+}
+
+.win-titlebar.win-yellow {
+    background: linear-gradient(to right, #b87d00, #f5c842, #b87d00);
+    color: #000;
+}
+
+.win-titlebar.win-red {
+    background: linear-gradient(to right, #8b0000, #ff4444, #8b0000);
+}
+
+.win-close {
+    background: radial-gradient(circle at 40% 30%, #ff6060, #cc0000);
+    border: 1px solid rgba(0,0,0,0.4);
+    color: white;
+    font-weight: bold;
+    font-size: 11px;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 1px 5px;
+    line-height: 1;
+}
+
+.win-body {
+    padding: 12px 14px;
+}
+
+.win-btn {
+    padding: 4px 20px;
+    border: 1px solid #888;
+    background: linear-gradient(to bottom, #f0f0f0, #dcdcdc);
+    cursor: pointer;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 12px;
+    margin: 2px;
+    border-radius: 2px;
+}
+.win-btn:active { background: #ccc; }
+
+.win-btn-green {
+    padding: 6px 20px;
+    border: 2px solid #006600;
+    background: linear-gradient(to bottom, #00cc00, #009900);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 3px;
+}
+.win-btn-green:hover { background: linear-gradient(to bottom, #00ee00, #00bb00); }
+
+.win-btn-red {
+    padding: 6px 20px;
+    border: 2px solid #660000;
+    background: linear-gradient(to bottom, #cc2222, #990000);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    width: 100%;
+    border-radius: 3px;
+}
+.win-btn-red:hover { background: linear-gradient(to bottom, #ee2222, #aa0000); }
+
+/* ===========================
+   BLINK
+   =========================== */
+.blink-soft {
+    animation: blinker 0.9s ease-in-out infinite;
+}
+
+@keyframes blinker {
+    50% { box-shadow: 0 0 18px 6px #ffee00; }
+}
+
+/* ===========================
+   DOWNLOAD BUTTON
+   =========================== */
+#downloadbtn {
+    background: linear-gradient(to bottom, #44ff44, #00cc00);
+    color: #000;
+    border: 6px outset #00cc00;
+    padding: 30px 50px;
+    text-align: center;
+    display: inline-block;
+    font-size: 40px;
+    cursor: pointer;
+    font-family: 'Impact', sans-serif;
+    text-transform: uppercase;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0,255,0,0.5);
+    transition: transform 0.1s, box-shadow 0.1s;
+    border-radius: 15px;
+    margin-top: 15px;
+    animation: btnPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes btnPulse {
+    0%, 100% { box-shadow: 8px 8px 0px rgba(0,0,0,0.8), 0 0 20px rgba(0,255,0,0.4); }
+    50% { box-shadow: 8px 8px 0px rgba(0,0,0,0.8), 0 0 50px rgba(0,255,0,0.9); }
+}
+
+#downloadbtn:hover {
+    transform: scale(1.05);
+    animation: none;
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.8), 0 0 60px rgba(0,255,0,1);
+}
+#downloadbtn:active {
+    border-style: inset;
+    transform: scale(0.98);
+}
+
+.small-text {
+    font-size: 10px;
+    color: #ffd700;
+    margin-top: 6px;
+    text-align: center;
+}
+
+/* ===========================
+   FAKE SCAN
+   =========================== */
+.fake-scan {
+    margin-top: 15px;
+    background-color: #ECE9D8;
+    color: #000;
+    font-family: 'Tahoma', sans-serif;
+    border: 2px solid #0055EA;
+    width: 95%;
+    font-size: 14px;
+    border-radius: 0 0 4px 4px;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+}
+
+.scan-header {
+    background: linear-gradient(to right, #0D3B8E, #3a93ff, #0D3B8E);
+    color: white;
+    font-weight: bold;
+    padding: 4px 10px;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+.scan-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 12px;
+    border-bottom: 1px solid #ccc;
+}
+
+.scan-bad { color: #cc0000; font-weight: bold; }
+.scan-warn { color: #cc6600; font-weight: bold; }
+.scan-good { color: #006600; font-weight: bold; }
+
+/* ===========================
+   TESTIMONIALS
+   =========================== */
+.testimonials {
+    margin-top: 15px;
+    width: 95%;
+}
+
+.testimonial {
+    background: white;
+    color: #000;
+    padding: 10px;
+    border: 2px solid #ccc;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 13px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+
+/* ===========================
+   TRUST BADGE + COUNTER
+   =========================== */
+.trust-badge {
+    background: #ECE9D8;
+    border: 2px solid green;
+    padding: 10px;
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+    font-family: 'Tahoma', sans-serif;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+    line-height: 1.8;
+}
+
+.counter-box {
+    background: #111;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    padding: 10px;
+    text-align: center;
+    font-size: 15px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+}
+
+/* ===========================
+   HACK OVERLAY
+   =========================== */
+#hack-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: 5000;
+}
+
+#hack-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+/* Fake install window */
+.hack-window {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 550px;
+    background-color: #ECE9D8;
+    border: 2px solid #0055EA;
+    border-radius: 6px 6px 0 0;
+    box-shadow: 0 0 60px rgba(0,0,255,0.5), 8px 8px 20px rgba(0,0,0,0.8);
+    z-index: 5010;
+    font-family: 'Tahoma', sans-serif;
+    font-size: 14px;
+}
+
+.hack-titlebar {
+    background: linear-gradient(to right, #0D3B8E, #3a93ff, #0D3B8E);
+    color: white;
+    padding: 4px 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 4px 4px 0 0;
+    font-size: 13px;
+}
+.hack-titlebar span { flex: 1; }
+
+.hack-close-btn {
+    background: radial-gradient(circle at 40% 30%, #ff6060, #cc0000);
+    border: 1px solid rgba(0,0,0,0.4);
+    color: white;
+    font-weight: bold;
+    font-size: 11px;
+    cursor: not-allowed;
+    border-radius: 3px;
+    padding: 1px 5px;
+}
+
+.hack-window-body {
+    padding: 20px 25px;
+}
+
+.hack-icon-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.hack-icon-row span:first-child {
+    font-size: 48px;
+    flex-shrink: 0;
+}
+
+.hack-progress-outer {
+    width: 100%;
+    height: 22px;
+    background: #fff;
+    border: 2px inset #888;
+    overflow: hidden;
+}
+
+.hack-progress-inner {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(to right, #0052cc, #0088ff, #00ccff);
+    background-size: 200% 100%;
+    animation: shimmer 1s linear infinite;
+    transition: width 0.08s linear;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+.hack-log-box {
+    background: #fff;
+    border: 1px inset #aaa;
+    padding: 6px 8px;
+    height: 110px;
+    overflow-y: auto;
+    font-size: 12px;
+    font-family: 'Courier New', monospace;
+    color: #333;
+}
+
+.hack-log-box div { margin-bottom: 2px; }
+.hack-log-err { color: #cc0000; font-weight: bold; }
+.hack-log-ok { color: #006600; }
+
+/* ===========================
+   RANSOMWARE POPUP
+   =========================== */
+.ransom-popup {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 640px;
+    background: #1a1a1a;
+    border: 3px solid #ff0000;
+    box-shadow: 0 0 60px rgba(255,0,0,0.7), 8px 8px 20px rgba(0,0,0,0.9);
+    z-index: 5020;
+    color: white;
+    font-family: 'Tahoma', sans-serif;
+}
+
+.ransom-header {
+    background: linear-gradient(to right, #8b0000, #ff0000, #8b0000);
+    color: #ffff00;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 3px solid #ff0000;
+}
+
+.ransom-body {
+    padding: 25px 30px;
+    background: #111;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.bitcoin-address {
+    background: #000;
+    border: 1px solid #ff4444;
+    color: #ff9900;
+    font-family: 'Courier New', monospace;
+    font-size: 15px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    word-break: break-all;
+    letter-spacing: 1px;
+}
+
+.countdown-row {
+    font-size: 20px;
+    color: #aaa;
+    margin-top: 15px;
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 15px;
+}
+
+/* ===========================
+   SPAM IMAGES
+   =========================== */
+.spam-img {
+    position: fixed;
+    z-index: 9999;
+    cursor: pointer;
+    min-width: 250px;
+    max-width: 400px;
+    user-select: none;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.8);
+    border: 3px solid #0058e6;
+    background-color: white;
+}
+
+/* ===========================
+   BSOD
+   =========================== */
+.bsod {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-color: #0000aa;
+    z-index: 10000;
+    color: white;
+    font-family: 'Consolas', 'Courier New', monospace;
+    padding: 50px;
+    box-sizing: border-box;
+    font-size: 24px;
+}
+
+.bsod h1 {
+    font-size: 40px;
+    background: white;
+    color: #0000aa;
+    display: inline-block;
+    padding: 5px 10px;
+    margin-bottom: 30px;
+}
+
+.bsod p {
+    margin: 5px 0;
+    line-height: 1.5;
+}
