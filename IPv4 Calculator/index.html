@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPv4 Subnet Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="gh-main">
+
+    <div class="gh-layout">
+
+      <!-- Input panel -->
+      <section class="gh-box">
+        <div class="gh-box-header">Vstup</div>
+
+        <div class="gh-box-body">
+          <div class="form-group">
+            <label for="ip-input" class="form-label">IP adresa</label>
+            <input type="text" id="ip-input" class="form-control" placeholder="192.168.1.0" spellcheck="false" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="mask-select" class="form-label">Maska sítě (CIDR)</label>
+            <select id="mask-select" class="form-control form-select"></select>
+          </div>
+
+          <p class="form-error" id="err"></p>
+
+          <button class="btn-primary" id="calc-btn" onclick="calculate()">Přepočítat</button>
+        </div>
+      </section>
+
+      <!-- Results panel -->
+      <section class="gh-box results-box">
+        <div class="gh-box-header">Výsledky</div>
+        <ul class="res-list">
+          <li class="res-item">
+            <span class="res-label">Adresa sítě</span>
+            <code class="res-val" id="val-network">—</code>
+          </li>
+          <li class="res-item">
+            <span class="res-label">Broadcast adresa</span>
+            <code class="res-val" id="val-broadcast">—</code>
+          </li>
+          <li class="res-item">
+            <span class="res-label">Celkem adres v síti</span>
+            <code class="res-val" id="val-total">—</code>
+          </li>
+          <li class="res-item">
+            <span class="res-label">Z toho použitelných</span>
+            <code class="res-val" id="val-usable">—</code>
+          </li>
+          <li class="res-item">
+            <span class="res-label">První použitelná IP</span>
+            <code class="res-val" id="val-first">—</code>
+          </li>
+          <li class="res-item res-item-last">
+            <span class="res-label">Poslední použitelná IP</span>
+            <code class="res-val" id="val-last">—</code>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
