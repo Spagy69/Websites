@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rivett — Winter Build Checklist</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="page-wrap">
+
+    <!-- ── Header ─────────────────────────── -->
+    <header class="site-header">
+      <div class="header-inner">
+
+        <div class="header-title">
+          <div class="header-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83
+              M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+            </svg>
+          </div>
+          <div>
+            <h1>Rivett — Winter Build</h1>
+            <p class="subtitle">Parts Assembly Checklist</p>
+          </div>
+        </div>
+
+        <!-- Global progress -->
+        <div class="global-progress-box">
+          <div class="global-progress-label">
+            <span>Overall Progress</span>
+            <span id="global-fraction">0 / 0</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="global-bar"></div>
+          </div>
+          <div class="global-pct" id="global-pct">0%</div>
+        </div>
+
+        <!-- Transmission filter -->
+        <div class="tx-filter">
+          <span class="tx-label">Transmission</span>
+          <button class="tx-btn active" data-tx="all">All</button>
+          <button class="tx-btn" data-tx="manual">Manual</button>
+          <button class="tx-btn" data-tx="auto">Automatic</button>
+        </div>
+
+        <!-- Controls -->
+        <div class="header-controls">
+          <button class="ctrl-btn" id="btn-expand">Expand All</button>
+          <button class="ctrl-btn" id="btn-collapse">Collapse All</button>
+          <button class="ctrl-btn danger" id="btn-reset">Reset All</button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- ── Content ────────────────────────── -->
+    <main id="main-content"></main>
+
+  </div>
+
+  <!-- Lucide Icons (free, MIT license) -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
