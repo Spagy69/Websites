@@ -39,12 +39,12 @@ const SECTIONS = [
       { id:"cylinder_head",     name:"Cylinder Head",         qty:1, tx:"all",    paint:false, damage:false, screws:[{n:10,s:"9mm"}] },
       { id:"distributor",       name:"Distributor",           qty:1, tx:"all",    paint:false, damage:true,  screws:[{n:1,s:"Screw"}] },
       { id:"exhaust_manifold",  name:"Exhaust Manifold",      qty:1, tx:"all",    paint:false, damage:false, screws:[{n:8,s:"9mm"}] },
+      { id:"exhaust_headers",   name:"Exhaust Headers",       qty:1, tx:"all",    paint:false, damage:false, screws:[{n:8,s:"9mm"}] },
       { id:"fan",               name:"Fan",                   qty:1, tx:"all",    paint:true,  damage:false, screws:[{n:4,s:"8mm"}] },
       { id:"fan_belt",          name:"Fan Belt",              qty:1, tx:"all",    paint:false, damage:true,  screws:[] },
       { id:"flexplate",         name:"Flexplate",             qty:1, tx:"auto",   paint:false, damage:false, screws:[{n:6,s:"12mm"}] },
       { id:"flywheel",          name:"Flywheel",              qty:1, tx:"manual", paint:false, damage:false, screws:[{n:6,s:"12mm"}] },
       { id:"fuel_pump",         name:"Fuel Pump",             qty:1, tx:"all",    paint:false, damage:true,  screws:[{n:2,s:"7mm"}] },
-      { id:"fuse_box",          name:"Fuse Box",              qty:1, tx:"all",    paint:false, damage:false, screws:[] },
       { id:"gearbox",           name:"Gearbox",               qty:1, tx:"all",    paint:false, damage:true,  screws:[{n:6,s:"11mm"}] },
       { id:"headgasket",        name:"Headgasket",            qty:1, tx:"all",    paint:false, damage:true,  screws:[] },
       { id:"main_bearings",     name:"Main Bearings",         qty:1, tx:"all",    paint:false, damage:true,  screws:[{n:2,s:"10mm"}] },
@@ -80,7 +80,8 @@ const SECTIONS = [
       { id:"fuel_tank",         name:"Fuel Tank",             qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"10mm"}] },
       { id:"gb_crossmember",    name:"Gearbox Crossmember",   qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"14mm"}] },
       { id:"heater_box",        name:"Heater Box",            qty:1, tx:"all",    paint:false, damage:true,  screws:[{n:4,s:"7mm"}] },
-      { id:"heater_hose",       name:"Heater Hose",           qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"Screw"}] },
+      { id:"heater_hose_inlet", name:"Heater Hose Inlet",     qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"Screw"}] },
+      { id:"heater_hose_outlet",name:"Heater Hose Outlet",    qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"Screw"}] },
       { id:"ignition_coil",     name:"Ignition Coil",         qty:1, tx:"all",    paint:false, damage:true,  screws:[{n:2,s:"8mm"}] },
       { id:"muffler",           name:"Muffler",               qty:1, tx:"all",    paint:false, damage:false, screws:[{n:1,s:"8mm"}] },
       { id:"power_brake",       name:"Power Brake Cylinder",  qty:1, tx:"all",    paint:false, damage:true,  screws:[{n:4,s:"8mm"}] },
@@ -99,10 +100,12 @@ const SECTIONS = [
     id:"suspension", name:"Suspension Assembly", icon:"disc", color:"#0891b2",
     optional:false,
     parts:[
-      { id:"brake_front",       name:"Front Brake Assembly",      qty:2, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"12mm"}] },
+      { id:"brake_front_l",     name:"Front Left Brake Assembly", qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"12mm"}] },
+      { id:"brake_front_r",     name:"Front Right Brake Assembly",qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"12mm"}] },
       { id:"coil_spring",       name:"Coil Spring",               qty:4, tx:"all",    paint:false, damage:true,  screws:[] },
       { id:"driveshaft",        name:"Driveshaft",                qty:1, tx:"all",    paint:false, damage:true,  screws:[{n:4,s:"8mm"}] },
-      { id:"front_links",       name:"Front Links",               qty:2, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"11mm"},{n:1,s:"12mm"}] },
+      { id:"front_link_l",      name:"Front Link Left",           qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"11mm"},{n:1,s:"12mm"}] },
+      { id:"front_link_r",      name:"Front Link Right",          qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"11mm"},{n:1,s:"12mm"}] },
       { id:"front_lower_arm",   name:"Front Lower Control Arm",   qty:2, tx:"all",    paint:false, damage:false, screws:[{n:1,s:"14mm"}] },
       { id:"front_upper_arm",   name:"Front Upper Control Arm",   qty:2, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"14mm"}] },
       { id:"rear_axle",         name:"Rear Axle",                 qty:1, tx:"all",    paint:false, damage:true,  screws:[{n:1,s:"7mm"},{n:4,s:"15mm"}] },
@@ -126,9 +129,8 @@ const SECTIONS = [
       { id:"fender_right",      name:"Fender Right",              qty:1, tx:"all",    paint:true,  damage:true,  screws:[{n:6,s:"8mm"}] },
       { id:"front_bumper",      name:"Front Bumper",              qty:1, tx:"all",    paint:true,  damage:true,  screws:[{n:2,s:"10mm"}] },
       { id:"grille",            name:"Grille",                    qty:1, tx:"all",    paint:true,  damage:true,  screws:[{n:2,s:"9mm"}] },
-      { id:"grille_cover",      name:"Grille Cover",              qty:1, tx:"all",    paint:false, damage:false, screws:[] },
-      { id:"headlight_left",    name:"Headlight Left",            qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"9mm"}] },
-      { id:"headlight_right",   name:"Headlight Right",          qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"9mm"}] },
+      { id:"headlight_asm_l",   name:"Headlight Assembly (Left)", qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"9mm"}] },
+      { id:"headlight_asm_r",   name:"Headlight Assembly (Right)",qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"9mm"}] },
       { id:"hood",              name:"Hood",                      qty:1, tx:"all",    paint:true,  damage:true,  screws:[{n:4,s:"7mm"}] },
       { id:"hubcap",            name:"Hubcap",                    qty:4, tx:"all",    paint:false, damage:false, screws:[] },
       { id:"rear_bumper",       name:"Rear Bumper",               qty:1, tx:"all",    paint:true,  damage:true,  screws:[{n:2,s:"10mm"}] },
@@ -173,8 +175,9 @@ const SECTIONS = [
       { id:"afr_gauge",         name:"AFR Gauge",                 qty:1, tx:"all",    paint:false, damage:false, screws:[{n:1,s:"Screw"}] },
       { id:"airdam",            name:"Airdam Spoiler",            qty:1, tx:"all",    paint:true,  damage:true,  screws:[] },
       { id:"amp_sub",           name:"Amplifier & Subwoofers",    qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"5mm"}] },
-      { id:"antenna",           name:"Antenna",                   qty:1, tx:"all",    paint:false, damage:false, screws:[{n:1,s:"8mm"}] },
-      { id:"bucket_seats",      name:"Bucket Seats (Racing)",     qty:1, tx:"all",    paint:false, damage:false, screws:[{n:4,s:"10mm"}] },
+      { id:"antenna",           name:"Antenna",                   qty:2, tx:"all",    paint:false, damage:false, screws:[{n:1,s:"8mm"}] },
+      { id:"bucket_seat_d",     name:"Bucket Seat (Driver)",      qty:1, tx:"all",    paint:false, damage:false, screws:[{n:4,s:"10mm"}] },
+      { id:"bucket_seat_p",     name:"Bucket Seat (Passenger)",   qty:1, tx:"all",    paint:false, damage:false, screws:[{n:4,s:"10mm"}] },
       { id:"cd_player",         name:"CD Player",                 qty:1, tx:"all",    paint:false, damage:false, screws:[] },
       { id:"collector",         name:"Collector",                 qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"11mm"},{n:1,s:"8mm"}] },
       { id:"ducktail",          name:"Ducktail Spoiler",          qty:1, tx:"all",    paint:true,  damage:true,  screws:[] },
@@ -185,7 +188,7 @@ const SECTIONS = [
       { id:"long_headers",      name:"Long Headers",              qty:1, tx:"all",    paint:false, damage:false, screws:[{n:8,s:"9mm"}] },
       { id:"front_rear_pipe",   name:"Front-Rear Pipe",           qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"8mm"},{n:1,s:"9mm"}] },
       { id:"marker_lights",     name:"Marker Lights",             qty:1, tx:"all",    paint:false, damage:false, screws:[{n:2,s:"8mm"}] },
-      { id:"rally_coil",        name:"Rally Coil Springs",        qty:1, tx:"all",    paint:false, damage:false, screws:[] },
+      { id:"rally_coil",        name:"Rally Coil Springs",        qty:4, tx:"all",    paint:false, damage:false, screws:[] },
       { id:"racing_harness",    name:"Racing Harness",            qty:1, tx:"all",    paint:false, damage:false, screws:[{n:4,s:"10mm"}] },
       { id:"rally_mudflaps",    name:"Rally Mudflaps",            qty:1, tx:"all",    paint:false, damage:false, screws:[] },
       { id:"rally_shock_f",     name:"Rally Shock Absorbers Front",qty:2,tx:"all",   paint:false, damage:true,  screws:[{n:2,s:"8mm"},{n:1,s:"12mm"}] },
@@ -201,8 +204,6 @@ const SECTIONS = [
       { id:"side_pipe",         name:"Side Pipe",                 qty:1, tx:"all",    paint:false, damage:false, screws:[{n:1,s:"8mm"}] },
       { id:"tachometer",        name:"Tachometer",                qty:1, tx:"all",    paint:false, damage:false, screws:[{n:1,s:"Screw"}] },
       { id:"window_grille",     name:"Window Grille",             qty:1, tx:"all",    paint:false, damage:false, screws:[] },
-      { id:"wheel_cover",       name:"Steering Wheel Cover",      qty:1, tx:"all",    paint:false, damage:false, screws:[] },
-      { id:"interior_cover",    name:"Interior Cover",            qty:1, tx:"all",    paint:false, damage:false, screws:[] },
     ]
   },
 ];
@@ -320,7 +321,7 @@ function build() {
     main.appendChild(card);
   });
 
-  applyTxFilter();
+  applyFilters();
   updateAllProgress();
 }
 
@@ -329,7 +330,10 @@ function buildPartRow(part) {
   const row = document.createElement("div");
   row.className = "part-row";
   row.id = "row-" + part.id;
-  applyTxVisibility(row, part.tx);
+  // Apply initial hidden state based on TX and potential search (though search is usually empty at build)
+  const txHidden = (currentTx === "manual" && part.tx === "auto") ||
+                   (currentTx === "auto"   && part.tx === "manual");
+  if (txHidden) row.classList.add("tx-hidden");
 
   // — checkboxes
   const cluster = document.createElement("div");
@@ -455,22 +459,33 @@ function toggleSection(id) {
   saveState();
 }
 
-// ─── TX FILTER ────────────────────────────────────────────────────────────────
-function applyTxFilter() {
-  SECTIONS.forEach(sec =>
+// ─── FILTERS ──────────────────────────────────────────────────────────────────
+function applyFilters() {
+  const query = (document.getElementById("part-search")?.value || "").toLowerCase();
+
+  SECTIONS.forEach(sec => {
+    let sectionHasVisibleParts = false;
     sec.parts.forEach(part => {
       const row = document.getElementById("row-" + part.id);
-      if (row) applyTxVisibility(row, part.tx);
-    })
-  );
-  updateAllProgress();
-}
+      if (!row) return;
 
-function applyTxVisibility(row, tx) {
-  const hidden =
-    (currentTx === "manual" && tx === "auto") ||
-    (currentTx === "auto"   && tx === "manual");
-  row.classList.toggle("tx-hidden", hidden);
+      const txHidden = (currentTx === "manual" && part.tx === "auto") ||
+                       (currentTx === "auto"   && part.tx === "manual");
+      const searchHidden = query && !part.name.toLowerCase().includes(query);
+
+      const hidden = txHidden || searchHidden;
+      row.classList.toggle("tx-hidden", hidden);
+
+      if (!hidden) sectionHasVisibleParts = true;
+    });
+
+    const card = document.getElementById("sec-" + sec.id);
+    if (card) {
+      card.style.display = sectionHasVisibleParts ? "block" : "none";
+    }
+  });
+
+  updateAllProgress();
 }
 
 // ─── PROGRESS ─────────────────────────────────────────────────────────────────
@@ -567,9 +582,11 @@ document.querySelectorAll(".tx-btn").forEach(btn => {
     btn.classList.add("active");
     currentTx = btn.dataset.tx;
     saveState();
-    applyTxFilter();
+    applyFilters();
   });
 });
+
+document.getElementById("part-search")?.addEventListener("input", applyFilters);
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 loadState();
