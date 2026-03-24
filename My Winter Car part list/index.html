@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Rivett — Winter Build Checklist</title>
+  <title>My Winter Car Rivett Part Checker</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,18 +15,10 @@
 
     <!-- ── Header ─────────────────────────── -->
     <header class="site-header">
-      <div class="header-inner">
-
+      <div class="header-top">
         <div class="header-title">
-          <div class="header-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83
-              M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-            </svg>
-          </div>
           <div>
-            <h1>Rivett — Winter Build</h1>
+            <h1>My Winter Car Rivett Part Checker</h1>
             <p class="subtitle">Parts Assembly Checklist</p>
           </div>
         </div>
@@ -42,21 +34,28 @@
           </div>
           <div class="global-pct" id="global-pct">0%</div>
         </div>
+      </div>
+    </header>
+
+    <!-- ── Sticky Bar ─────────────────────── -->
+    <div class="sticky-bar">
+      <!-- Search bar -->
+      <div class="search-box">
+        <input type="text" id="part-search" placeholder="Search parts..." autocomplete="off" />
+      </div>
+
+      <div class="filters-and-controls">
+        <!-- Attribute Filters -->
+        <div class="attr-filters">
+          <label class="filter-cb"><input type="checkbox" id="filter-damage"> Damageable</label>
+          <label class="filter-cb"><input type="checkbox" id="filter-paint"> Paintable</label>
+        </div>
 
         <!-- Transmission filter -->
         <div class="tx-filter">
-          <span class="tx-label">Transmission</span>
-          <button class="tx-btn active" data-tx="all">All</button>
+          <button class="tx-btn active" data-tx="all">All Tx</button>
           <button class="tx-btn" data-tx="manual">Manual</button>
-          <button class="tx-btn" data-tx="auto">Automatic</button>
-        </div>
-        <!-- Search bar -->
-        <div class="search-box">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
-          </svg>
-          <input type="text" id="part-search" placeholder="Search parts..." autocomplete="off" />
+          <button class="tx-btn" data-tx="auto">Auto</button>
         </div>
 
         <!-- Controls -->
@@ -65,17 +64,15 @@
           <button class="ctrl-btn" id="btn-collapse">Collapse All</button>
           <button class="ctrl-btn danger" id="btn-reset">Reset All</button>
         </div>
-
       </div>
-    </header>
+    </div>
 
     <!-- ── Content ────────────────────────── -->
     <main id="main-content"></main>
 
   </div>
 
-  <!-- Lucide Icons (free, MIT license) -->
-  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  
   <script src="script.js"></script>
 </body>
 </html>

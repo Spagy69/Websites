@@ -32,54 +32,40 @@ body {
 }
 
 /* ─── PAGE WRAP ──────────────────────────────────────── */
-.page-wrap { max-width: 980px; margin: 0 auto; padding: 0 16px 80px; }
+.page-wrap { max-width: 1400px; margin: 0 auto; padding: 0 16px 80px; }
 
 /* ─── HEADER ─────────────────────────────────────────── */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: rgba(13,15,20,0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 0 14px;
-  margin-bottom: 28px;
+  padding: 24px 0 20px;
 }
 
-.header-inner { display: flex; flex-direction: column; gap: 12px; }
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 
 .header-title { display: flex; align-items: center; gap: 14px; }
 
-.header-icon {
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(135deg, #1e3a5f 0%, #2563eb 100%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  color: #93c5fd;
-  box-shadow: 0 0 24px rgba(37,99,235,0.4);
-}
-
 .header-title h1 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: -0.5px;
   background: linear-gradient(90deg, #e2e8f0 30%, #93c5fd 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  line-height: 1.2;
 }
 
 .subtitle {
-  font-size: 0.73rem;
+  font-size: 0.8rem;
   color: var(--text-dim);
   text-transform: uppercase;
   letter-spacing: 1.2px;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 /* ─── GLOBAL PROGRESS ────────────────────────────────── */
@@ -87,7 +73,8 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 12px 16px;
+  padding: 12px 20px;
+  min-width: 300px;
 }
 
 .global-progress-label {
@@ -122,17 +109,67 @@ body {
   font-weight: 600;
 }
 
+/* ─── STICKY BAR ─────────────────────────────────────── */
+.sticky-bar {
+  position: sticky;
+  top: 16px;
+  z-index: 100;
+  background: rgba(13,15,20,0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 20px;
+  margin-bottom: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.filters-and-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.attr-filters {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.filter-cb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 99px;
+  transition: all var(--trans);
+}
+.filter-cb:hover { color: var(--text); border-color: var(--border2); }
+.filter-cb input { cursor: pointer; }
+
 /* ─── TRANSMISSION FILTER ────────────────────────────── */
 .tx-filter { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.tx-label { font-size: 0.75rem; color: var(--text-dim); font-weight: 500; margin-right: 2px; }
+.tx-label { font-size: 0.75rem; color: var(--text-dim); font-weight: 500; margin-right: 4px; }
 
 .tx-btn {
-  padding: 5px 16px;
+  padding: 6px 16px;
   border-radius: 99px;
   border: 1px solid var(--border);
-  background: transparent;
+  background: var(--surface);
   color: var(--text-dim);
-  font-size: 0.73rem;
+  font-size: 0.75rem;
   font-weight: 600;
   cursor: pointer;
   transition: all var(--trans);
@@ -141,28 +178,24 @@ body {
 }
 .tx-btn:hover { color: var(--text); border-color: var(--accent); }
 .tx-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
 /* ─── SEARCH BOX ─────────────────────────────────────── */
 .search-box {
   position: relative;
   display: flex;
   align-items: center;
+  flex: 1;
   max-width: 400px;
-}
-.search-icon {
-  position: absolute;
-  left: 14px;
-  color: var(--text-dim);
-  pointer-events: none;
 }
 .search-box input {
   width: 100%;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 99px;
-  padding: 10px 16px 10px 42px;
+  padding: 12px 20px;
   color: var(--text);
   font-family: inherit;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   transition: all var(--trans);
 }
 .search-box input:focus {
@@ -277,6 +310,7 @@ body {
   color: var(--text-dim);
   transition: transform var(--trans);
   flex-shrink: 0;
+  font-size: 14px;
 }
 .chevron svg { width: 14px; height: 14px; }
 .section-card.collapsed .chevron { transform: rotate(-90deg); }
@@ -311,7 +345,13 @@ body {
 .part-row.tx-hidden { display: none; }
 
 /* Checkboxes */
-.checkbox-cluster { display: flex; gap: 4px; flex-shrink: 0; padding-top: 2px; }
+.checkbox-cluster {
+  display: grid;
+  gap: 4px;
+  flex-shrink: 0;
+  padding-top: 2px;
+  margin-right: 8px;
+}
 
 .part-checkbox {
   width: 17px;
@@ -400,22 +440,24 @@ body {
 .screws-row {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin-top: 4px;
+  gap: 6px;
   flex-wrap: wrap;
+  width: 220px;
+  flex-shrink: 0;
+  padding-left: 12px;
 }
 .screw-tag {
   display: inline-flex;
   align-items: center;
   gap: 3px;
-  font-size: 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--text-muted);
   background: rgba(255,255,255,0.04);
   border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 2px 7px;
+  border-radius: 6px;
+  padding: 4px 10px;
 }
-.screw-tag svg { width: 9px; height: 9px; opacity: 0.6; }
 
 /* Part counter */
 .part-counter {
@@ -423,6 +465,8 @@ body {
   align-items: center;
   flex-shrink: 0;
   padding-top: 2px;
+  width: 60px;
+  justify-content: flex-end;
 }
 .part-counter-fraction {
   font-size: 0.75rem;
@@ -432,8 +476,21 @@ body {
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  .sticky-bar {
+    flex-direction: column;
+    align-items: stretch;
+    top: 10px;
+    padding: 12px;
+  }
+  .filters-and-controls {
+    justify-content: center;
+    gap: 12px;
+  }
+}
 @media (max-width: 600px) {
-  .header-title h1 { font-size: 1.2rem; }
+  .header-top { flex-direction: column; align-items: flex-start; }
+  .header-title h1 { font-size: 1.4rem; }
   .part-row { padding: 9px 12px; }
   .section-header { padding: 12px 12px; }
   .section-progress-wrap { padding: 0 12px 9px; }

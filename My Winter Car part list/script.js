@@ -1,16 +1,6 @@
-// ─── ICON HELPERS (Lucide SVG snippets used inline) ──────────────────────────
+// ─── ICONS REMOVED ───────────────────────────────────────────────────────────
 const ICONS = {
-  cog:      `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>`,
-  plug:     `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8H6a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2z"/></svg>`,
-  disc:     `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>`,
-  carfront: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><circle cx="12" cy="12" r="4"/></svg>`,
-  sofa:     `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5H6V11a2 2 0 0 0-4 0z"/><path d="M4 18v2"/><path d="M20 18v2"/><path d="M12 4v9"/></svg>`,
-  zap:      `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>`,
-  // small icons
-  chevdown: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>`,
-  wrench:   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>`,
-  paint:    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 11H5a4 4 0 0 0 0 8h14a2 2 0 0 0 0-4H5"/><path d="M5 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8"/></svg>`,
-  shield:   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>`,
+  chevdown: `▼`,
 };
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
@@ -248,10 +238,8 @@ function build() {
     // icon box
     const iconEl = document.createElement("div");
     iconEl.className = "section-icon";
-    iconEl.style.background = sec.color + "1a";
-    iconEl.style.border = `1px solid ${sec.color}33`;
-    iconEl.style.color = sec.color;
-    iconEl.innerHTML = ICONS[sec.icon] || "";
+    iconEl.style.display = "none";
+    iconEl.innerHTML = "";
 
     // meta
     const meta = document.createElement("div");
@@ -289,7 +277,6 @@ function build() {
     chev.className = "chevron";
     chev.innerHTML = ICONS.chevdown;
 
-    header.appendChild(iconEl);
     header.appendChild(meta);
     header.appendChild(stats);
     header.appendChild(chev);
@@ -330,22 +317,27 @@ function buildPartRow(part) {
   const row = document.createElement("div");
   row.className = "part-row";
   row.id = "row-" + part.id;
-  // Apply initial hidden state based on TX and potential search (though search is usually empty at build)
-  const txHidden = (currentTx === "manual" && part.tx === "auto") ||
-                   (currentTx === "auto"   && part.tx === "manual");
-  if (txHidden) row.classList.add("tx-hidden");
 
-  // — checkboxes
+  // — checkboxes in a box pattern (2 rows)
   const cluster = document.createElement("div");
   cluster.className = "checkbox-cluster";
+  
+  const cols = Math.max(1, Math.ceil(part.qty / 2));
+  cluster.style.gridTemplateColumns = `repeat(${cols}, 17px)`;
+
   for (let i = 0; i < part.qty; i++) {
     const cb = document.createElement("input");
     cb.type = "checkbox";
     cb.className = "part-checkbox";
     cb.checked = i < checked;
     cb.dataset.partId = part.id;
-    cb.dataset.idx    = String(i);
-    cb.addEventListener("change", onCheck);
+    cb.dataset.idx = String(i);
+    cb.addEventListener("change", (e) => {
+      const newChecked = e.target.checked ? i + 1 : i;
+      const cbs = document.querySelectorAll(`[data-part-id="${part.id}"]`);
+      cbs.forEach((box, idx) => { box.checked = idx < newChecked; });
+      updatePartChecked(part.id, newChecked);
+    });
     cluster.appendChild(cb);
   }
 
@@ -382,31 +374,30 @@ function buildPartRow(part) {
     if (part.paint) {
       const a = document.createElement("span");
       a.className = "attr-tag attr-paint";
-      a.innerHTML = `${ICONS.paint} Paintable`;
+      a.innerHTML = `Paintable`;
       attrs.appendChild(a);
     }
     if (part.damage) {
       const a = document.createElement("span");
       a.className = "attr-tag attr-damage";
-      a.innerHTML = `${ICONS.shield} Damageable`;
+      a.innerHTML = `Damageable`;
       attrs.appendChild(a);
     }
     info.appendChild(attrs);
   }
 
   // screws row
+  const screwRow = document.createElement("div");
+  screwRow.className = "screws-row";
   const usefulScrews = part.screws.filter(s => s.n > 0 || s.s);
   if (usefulScrews.length > 0) {
-    const screwRow = document.createElement("div");
-    screwRow.className = "screws-row";
     usefulScrews.forEach(s => {
       const tag = document.createElement("span");
       tag.className = "screw-tag";
       const label = s.n > 0 ? `${s.n}× ${s.s}` : s.s;
-      tag.innerHTML = `${ICONS.wrench} ${label}`;
+      tag.innerHTML = `${label}`;
       screwRow.appendChild(tag);
     });
-    info.appendChild(screwRow);
   }
 
   // — counter
@@ -421,23 +412,17 @@ function buildPartRow(part) {
 
   row.appendChild(cluster);
   row.appendChild(info);
+  row.appendChild(screwRow);
   row.appendChild(counter);
   return row;
 }
 
 // ─── EVENTS ───────────────────────────────────────────────────────────────────
-function onCheck(e) {
-  const partId = e.target.dataset.partId;
-  const idx    = parseInt(e.target.dataset.idx);
-  const part   = findPart(partId);
+function updatePartChecked(partId, newChecked) {
+  const part = findPart(partId);
   if (!part) return;
 
-  // sequential: checking i checks 0..i; unchecking i unchecks i..qty-1
-  const newChecked = e.target.checked ? idx + 1 : idx;
   state[partId] = newChecked;
-
-  const cbs = document.querySelectorAll(`[data-part-id="${partId}"]`);
-  cbs.forEach((cb, i) => { cb.checked = i < newChecked; });
 
   const nameEl = document.getElementById("name-" + partId);
   if (nameEl) nameEl.className = "part-name" + (newChecked >= part.qty ? " all-done" : "");
@@ -462,6 +447,8 @@ function toggleSection(id) {
 // ─── FILTERS ──────────────────────────────────────────────────────────────────
 function applyFilters() {
   const query = (document.getElementById("part-search")?.value || "").toLowerCase();
+  const dmgOnly = document.getElementById("filter-damage")?.checked;
+  const pntOnly = document.getElementById("filter-paint")?.checked;
 
   SECTIONS.forEach(sec => {
     let sectionHasVisibleParts = false;
@@ -469,11 +456,13 @@ function applyFilters() {
       const row = document.getElementById("row-" + part.id);
       if (!row) return;
 
-      const txHidden = (currentTx === "manual" && part.tx === "auto") ||
-                       (currentTx === "auto"   && part.tx === "manual");
-      const searchHidden = query && !part.name.toLowerCase().includes(query);
+      let hidden = false;
+      if (currentTx === "manual" && part.tx === "auto") hidden = true;
+      if (currentTx === "auto" && part.tx === "manual") hidden = true;
+      if (query && !part.name.toLowerCase().includes(query)) hidden = true;
+      if (dmgOnly && !part.damage) hidden = true;
+      if (pntOnly && !part.paint) hidden = true;
 
-      const hidden = txHidden || searchHidden;
       row.classList.toggle("tx-hidden", hidden);
 
       if (!hidden) sectionHasVisibleParts = true;
@@ -587,6 +576,8 @@ document.querySelectorAll(".tx-btn").forEach(btn => {
 });
 
 document.getElementById("part-search")?.addEventListener("input", applyFilters);
+document.getElementById("filter-damage")?.addEventListener("change", applyFilters);
+document.getElementById("filter-paint")?.addEventListener("change", applyFilters);
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 loadState();
