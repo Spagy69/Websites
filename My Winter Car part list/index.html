@@ -60,6 +60,7 @@
 
         <!-- Controls -->
         <div class="header-controls">
+          <button class="ctrl-btn" id="btn-info">INFO</button>
           <button class="ctrl-btn" id="btn-expand">Expand All</button>
           <button class="ctrl-btn" id="btn-collapse">Collapse All</button>
           <button class="ctrl-btn danger" id="btn-reset">Reset All</button>
@@ -72,7 +73,16 @@
 
   </div>
 
-  
+  <!-- ── Info Modal ─────────────────────── -->
+  <div class="modal-overlay" id="info-modal">
+    <div class="modal-content">
+      <h2>Welcome to My Winter Car Part Checker</h2>
+      <p>This website helps you track which parts you have assembled. Just click the checkboxes for each part you install.</p>
+      <p><strong>Your progress is saved automatically in your browser!</strong> You can safely close the page and come back later.</p>
+      <button class="modal-close-btn" id="btn-close-info">Got it!</button>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>

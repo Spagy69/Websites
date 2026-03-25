@@ -541,6 +541,31 @@ function findPart(id) {
   return null;
 }
 
+// ─── INFO MODAL ───────────────────────────────────────────────────────────────
+const infoModal = document.getElementById("info-modal");
+const btnInfo = document.getElementById("btn-info");
+const btnCloseInfo = document.getElementById("btn-close-info");
+
+function openInfoModal() {
+  infoModal?.classList.add("active");
+}
+
+function closeInfoModal() {
+  infoModal?.classList.remove("active");
+  localStorage.setItem(STORAGE_KEY + "_info_seen", "true");
+}
+
+btnInfo?.addEventListener("click", openInfoModal);
+btnCloseInfo?.addEventListener("click", closeInfoModal);
+infoModal?.addEventListener("click", (e) => {
+  if (e.target === infoModal) closeInfoModal();
+});
+
+// Show modal on first visit
+if (!localStorage.getItem(STORAGE_KEY + "_info_seen")) {
+  setTimeout(openInfoModal, 400);
+}
+
 // ─── CONTROLS ─────────────────────────────────────────────────────────────────
 document.getElementById("btn-expand").addEventListener("click", () => {
   SECTIONS.forEach(sec => {
