@@ -1,0 +1,117 @@
+/*pane kotmele fakt to nečtete..*/ 
+
+body {
+  font-family: sans-serif;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 0 20px;
+  color: #000;
+  background: #fff;
+}
+
+header {
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 2px solid #000;
+  padding-bottom: 8px;
+  margin-bottom: 24px;
+}
+
+h1 { font-size: 22px; margin: 0 0 8px; }
+h2 { font-size: 18px; }
+p { color: #444; font-size: 14px; }
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 14px;
+  margin-bottom: 3px;
+}
+
+input[type="text"], input[type="file"], select {
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid #999;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 18px;
+  padding: 8px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  background: #000;
+  color: #fff;
+  border: none;
+}
+
+#err {
+  color: red;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+progress {
+  width: 100%;
+  height: 14px;
+  margin-top: 6px;
+  display: block;
+}
+
+#pct {
+  font-size: 12px;
+  color: #555;
+}
+
+#count {
+  font-size: 22px;
+}
+
+#status-msg {
+  font-family: monospace;
+  font-size: 13px;
+  color: #000;
+  margin: 0;
+}
+
+#result-inner {
+  display: flex;
+  gap: 24px;
+  margin: 16px 0;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+#result-foto {
+  width: 180px;
+  border: 1px solid #ccc;
+  display: block;
+}
+
+#stats table {
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+#stats td {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+}
+
+#stats td:first-child {
+  color: #555;
+  width: 140px;
+}
+
+#preview {
+  width: 180px;
+}
+
+/*nic zajimaveho tu neni fakt..*/ 
+
+.note {
+  font-size: 11px;
+  color: #999;
+}

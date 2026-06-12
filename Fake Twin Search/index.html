@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>TwinScan AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Pane kotmele to už ale přeháníte -->
+<header>TwinScan AI</header>
+
+<div id="form" class="page">
+  <h1>Najdi svého ztraceného dvojče</h1>
+  <p>Vyplňte údaje a AI prohledá celý internet.</p>
+  <hr>
+
+  <label>Jméno a příjmení</label>
+  <input type="text" id="jmeno" placeholder="Jan Novák">
+
+  <label>Věk</label>
+  <input type="text" id="vek" placeholder="25">
+
+  <label>Barva očí</label>
+  <select id="oci">
+    <option value="">-- vyberte --</option>
+    <option>Hnědá</option>
+    <option>Modrá</option>
+    <option>Zelená</option>
+    <option>Šedá</option>
+  </select>
+
+  <label>Výška (cm)</label>
+  <input type="text" id="vyska" placeholder="175">
+
+  <label>Koníčky</label>
+  <input type="text" id="hobby" placeholder="gaming, vaření, sport">
+
+  <label>Fotografie</label>
+  <input type="file" id="foto" accept="image/*" onchange="previewFoto()">
+  <img id="preview" style="display:none">
+
+  <div id="err"></div>
+  <button onclick="startScan()">Spustit skenování</button>
+</div>
+
+<div id="scanning" class="page" style="display:none">
+  <h2>Probíhá vyhledávání...</h2>
+  <p id="status-msg">Inicializuji engine...</p>
+  <hr>
+  <p>Zbývá prověřit: <strong id="count">1 000 000</strong> lidí</p>
+  <progress id="bar" value="0" max="100"></progress>
+  <span id="pct">0 %</span>
+</div>
+
+<div id="result" class="page" style="display:none">
+  <h2>Dvojče nalezeno.</h2>
+  <hr>
+  <div id="result-inner">
+    <img src="imgs/profil.png" alt="dvojce" id="result-foto">
+    <div id="stats"></div>
+  </div>
+  <hr>
+  <button onclick="location.reload()">Zkusit znovu</button>
+</div>
+
+<script src="script.js"></script>
+<!-- Stejnak jste zjistil uplné hovno... -->
+</body>
+</html>
